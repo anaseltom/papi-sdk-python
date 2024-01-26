@@ -60,14 +60,14 @@ def parse_dump(filename: str) -> None:
                     # do stuff with the hotel
 
                     cur.execute(
-                        "SELECT COUNT(*) FROM hotel_dump WHERE hotel_id = %s", (hotel_data['id'],))
+                        "SELECT COUNT(*) FROM hotel_dump_ar WHERE hotel_id = %s", (hotel_data['id'],))
                     if cur.fetchone()[0] > 0:
                         print(
                             f"{i} - Hotel {hotel_data['id']} found in database. Updating...")
 
                         # Update query for existing hotel
                         hotel_data_str = json.dumps(hotel_data)
-                        update_query = 'UPDATE hotel_dump SET dump = %s, "updatedAt" = %s WHERE hotel_id = %s'
+                        update_query = 'UPDATE hotel_dump_ar SET dump = %s, "updatedAt" = %s WHERE hotel_id = %s'
                         try:
                             cur.execute(
                                 update_query, (hotel_data_str, "2023-09-01 21:31:07.595+04", hotel_data['id']))
@@ -82,7 +82,7 @@ def parse_dump(filename: str) -> None:
                     # ANAS's code
                     hotel_data_str = json.dumps(hotel_data)
 
-                    insert_query = 'INSERT INTO hotel_dump (hotel_id, dump, "createdAt", "updatedAt") VALUES (%s, %s, %s, %s)'
+                    insert_query = 'INSERT INTO hotel_dump_ar (hotel_id, dump, "createdAt", "updatedAt") VALUES (%s, %s, %s, %s)'
                     try:
                         cur.execute(
                             insert_query, (hotel_data['id'], hotel_data_str, "2023-09-01 21:31:07.595+04", "2023-09-01 21:31:07.595+04"))
