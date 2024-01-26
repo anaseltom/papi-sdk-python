@@ -96,4 +96,4 @@ def parse_dump(filename: str) -> None:
 
 
 if __name__ == "__main__":
-    parse_dump("partner_feed_ar.json.zst")
+    parse_dump("partner_feed_en.json.zst")
